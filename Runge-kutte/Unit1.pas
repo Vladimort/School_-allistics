@@ -68,7 +68,6 @@ begin
   xmax:=x[0];
   Vmin:=V[0];
   Vmax:=V[0];
-  //hello!
    for i:=1 to n do
     begin
      x1:=dt*f1(t[i-1],x[i-1],v[i-1]);
