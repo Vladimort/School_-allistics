@@ -26,11 +26,11 @@ type
     { Public declarations }
   end;
 const
-  n=200;
+  n=10000;
 
 var
   Form1: TForm1;
-  c,m,k,x1,V1,x2,V2,x3,V3,x4,V4:real;
+  c,m,k:real;
   t,x,V:array[0..n] of real;
   j:integer;
 
@@ -70,16 +70,8 @@ begin
   Vmax:=V[0];
    for i:=1 to n do
     begin
-     x1:=dt*f1(t[i-1],x[i-1],v[i-1]);
-     v1:=dt*f2(t[i-1],x[i-1],V[i-1]);
-     x2:=dt*f1(t[i-1]+dt/2,x[i-1]+x1/2,v[i-1]+v1/2);
-     v2:=dt*f2(t[i-1]+dt/2,x[i-1]+x1/2,v[i-1]+v1/2);
-     x3:=dt*f1(t[i-1]+dt/2,x[i-1]+x2/2,v[i-1]+v2/2);
-     v3:=dt*f2(t[i-1]+dt/2,x[i-1]+x2/2,v[i-1]+v2/2);
-     x4:=dt*f1(t[i-1]+dt,x[i-1]+x3,v[i-1]+v3);
-     v4:=dt*f2(t[i-1]+dt,x[i-1]+x3,v[i-1]+v3);
-     x[i]:=x[i-1]+(x1+2*x2+2*x3+x4)/6;
-     V[i]:=V[i-1]+(V1+2*V2+2*V3+V4)/6;
+     x[i]:=x[i-1]+dt*f1(t[i-1],x[i-1],V[i-1]);
+     V[i]:=V[i-1]+dt*f2(t[i-1],x[i-1],V[i-1]);
      t[i]:=t[i-1]+dt;
      if x[i]<xmin then xmin:=x[i];
      if x[i]>xmax then xmax:=x[i];
